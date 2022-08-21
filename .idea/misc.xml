@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/User/Test_tasks/ExchangeRate/app/src/main/res/drawable/backg_button.xml" value="0.171" />
+        <entry key="..\:/User/Test_tasks/ExchangeRate/app/src/main/res/drawable/star.xml" value="0.171" />
+        <entry key="..\:/User/Test_tasks/ExchangeRate/app/src/main/res/drawable/star_border.xml" value="0.171" />
         <entry key="..\:/User/Test_tasks/ExchangeRate/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
+        <entry key="..\:/User/Test_tasks/ExchangeRate/app/src/main/res/layout/exchange_rate_item.xml" value="0.2" />
         <entry key="..\:/User/Test_tasks/ExchangeRate/app/src/main/res/layout/fragment_exchange_rate.xml" value="0.11302083333333333" />
         <entry key="..\:/User/Test_tasks/ExchangeRate/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
       </map>

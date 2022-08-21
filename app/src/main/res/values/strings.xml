@@ -5,4 +5,7 @@
 
     <string name="rate">rate</string>
     <string name="favourite">favourite</string>
+    <string name="rateNum">1</string>
+    <string name="rateName">currency name</string>
+
 </resources>
