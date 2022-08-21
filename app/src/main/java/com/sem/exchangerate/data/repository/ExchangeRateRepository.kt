@@ -9,11 +9,11 @@ import com.sem.exchangerate.domain.repository.ExchangeRateCall
 class ExchangeRateRepository(private val exchangeRateDataSource: ExchangeRateDataSource) : ExchangeRateCall {
 
     override fun loadCurrency(): LiveData<List<ExchangeRateModel>> {
-        TODO("Not yet implemented")
+        return exchangeRateDataSource.loadExchangeRate()
     }
 
-    override suspend fun startMigration(context: Context) {
+/*    override suspend fun startMigration(context: Context) {
         TODO("Not yet implemented")
-    }
+    }*/
 
 }
