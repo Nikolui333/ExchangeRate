@@ -10,6 +10,8 @@ import com.sem.exchangerate.data.models.FavouriteModel
 @Database(entities = [ExchangeRateModel::class, FavouriteModel::class], version = 1)
 abstract class ExchangeRateDB : RoomDatabase() {
 
+    abstract val exchangeRateDao : ExchangeRateDao
+
     companion object { // аналог static в java
         @Volatile
         private var INSTANCE: ExchangeRateDB? = null
