@@ -18,7 +18,7 @@ class ApiClient private constructor() {
 
     companion object {
 
-        private val BASE_URL = "https://www.cbr-xml-daily.ru/"
+        private val BASE_URL = "https://api.apilayer.com/exchangerates_data/latest?symbols=AUD%2CEUR%2CJPY%2CMDL%2CRUB&base=USD"
 
         private var apiClient: ApiClient? = null
         private var retrofit: Retrofit? = null

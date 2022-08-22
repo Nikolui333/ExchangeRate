@@ -1,9 +1,11 @@
 package com.sem.exchangerate.presentation.di
 
 import androidx.room.Room
+import com.sem.exchangerate.data.dataSource.ApiDataSource
 import com.sem.exchangerate.data.dataSource.ExchangeRateDataSource
+import com.sem.exchangerate.data.dataSourceIMPL.ApiDataSourceIMPL
 import com.sem.exchangerate.data.dataSourceIMPL.ExchangeRateDataSourceIMPL
-import com.sem.exchangerate.data.localDB.ExchangeRateDB
+import com.sem.exchangerate.data.localDB.ExchangeRateDataBase
 import com.sem.exchangerate.data.repository.ExchangeRateRepository
 import com.sem.exchangerate.domain.repository.ExchangeRateCall
 import com.sem.exchangerate.domain.useCase.ExchangeRateUseCase
@@ -16,15 +18,21 @@ val exchangeRate = module {
 
     single {
         Room.databaseBuilder(
-            androidContext(), ExchangeRateDB::class.java,
+            androidContext(), ExchangeRateDataBase::class.java,
             "dbO"
         ).build()
     }
 
-    single { get<ExchangeRateDB>().exchangeRateDao }
+    single { get<ExchangeRateDataBase>().exchangeRateDao }
 
     single<ExchangeRateDataSource> {
         ExchangeRateDataSourceIMPL(
+            get()
+        )
+    }
+
+    single<ApiDataSource> {
+        ApiDataSourceIMPL(
             get()
         )
     }
