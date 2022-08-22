@@ -7,8 +7,8 @@ import retrofit2.http.Headers
 
 interface ApiInterface {
 
-    @Headers("")
-    @GET()
+    @Headers("apikey: ")
+    @GET("exchangerates_data/latest?symbols=AUD%2CEUR%2CJPY%2CMDL%2CRUB&base=USD")
     fun loadExchangeRateApi(): Call<ArrayList<ExchangeRateApiModel>>
 
 }

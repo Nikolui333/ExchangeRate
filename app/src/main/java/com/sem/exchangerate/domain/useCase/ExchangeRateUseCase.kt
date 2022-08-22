@@ -13,10 +13,10 @@ class ExchangeRateUseCase(private val exchangeRateCall : ExchangeRateCall) {
 
     }
 
-/*    suspend fun startMigration (context: Context) {
+    suspend fun startMigration (context: Context) {
 
         exchangeRateCall.startMigration(context)
 
-    }*/
+    }
 
 }

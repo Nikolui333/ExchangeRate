@@ -12,7 +12,7 @@ class ExchangeRateViewModel(private val exchangeRateUseCase: ExchangeRateUseCase
     // viewModelScope прекращает работу внутри ViewModel (в данном случае в методе insert) в случае, если пользователь покинул экран
     // проще говоря, если этот метод не используется, viewModelScope не загружает им память
     fun migration(context: Context) = viewModelScope.launch {
-       // exchangeRateUseCase.startMigration(context)
+        exchangeRateUseCase.startMigration(context)
     }
 
 }

@@ -31,7 +31,7 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                 loadExchangeRate = (response.body() as ArrayList<ExchangeRateApiModel>?)!!
 
 /*                // помещение данных в локальную базу данных
-                for (audit in loadMedicines) {
+                for (audit in loadExchangeRate) {
 
                     audit.id?.let {
                         ExchangeRateModel( // MedicationsModel - локальная таблица базы данных

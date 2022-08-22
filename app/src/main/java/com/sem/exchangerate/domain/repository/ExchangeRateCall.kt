@@ -7,6 +7,6 @@ import com.sem.exchangerate.data.models.ExchangeRateModel
 interface ExchangeRateCall {
 
     fun loadCurrency(): LiveData<List<ExchangeRateModel>>
-  //  suspend fun startMigration(context: Context)
+    suspend fun startMigration(context: Context)
 
 }
