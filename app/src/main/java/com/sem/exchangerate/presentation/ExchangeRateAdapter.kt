@@ -8,9 +8,11 @@ import com.sem.exchangerate.R
 import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.databinding.ExchangeRateItemBinding
 
-class ExchangeRateAdapter : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeRateHolder>() {
+class ExchangeRateAdapter() : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeRateHolder>() {
 
     private val exchangeRate = ArrayList<ExchangeRateModel>()
+
+    private val list = arrayListOf("AUD", "EUR", "RUB", "JPY")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExchangeRateHolder {
 
@@ -21,19 +23,27 @@ class ExchangeRateAdapter : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeRat
     }
 
     override fun getItemCount(): Int {
-        return exchangeRate.size
+        return list.size
+        //exchangeRate.size
     }
 
     override fun onBindViewHolder(holder: ExchangeRateHolder, position: Int) {
-        holder.bind(exchangeRate[position])
+        holder.bind(/*exchangeRate[position],*/ list[position])
 
+    }
+
+    fun setList(exchangeRateList: List<ExchangeRateModel>) {
+       // exchangeRate.clear()
+        exchangeRate.addAll(exchangeRateList) // заполнение medications данными
     }
 
     class ExchangeRateHolder(val binding: ExchangeRateItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(exchangeRateModel: ExchangeRateModel){
-            binding.name.text = exchangeRateModel.name
-            binding.num.text = exchangeRateModel.exchange.toString()
+        fun bind(/*exchangeRateModel: ExchangeRateModel,*/ currency : String){
+            binding.name.text = currency
+               // exchangeRateModel.name
+            binding.num.text = currency
+                //exchangeRateModel.exchange.toString()
         }
 
     }
