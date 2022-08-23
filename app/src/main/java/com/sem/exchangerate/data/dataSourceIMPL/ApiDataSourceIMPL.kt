@@ -30,13 +30,18 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                 // получаем данные с сервера
                 loadExchangeRate = (response.body() as ArrayList<ExchangeRateApiModel>?)!!
 
-/*                // помещение данных в локальную базу данных
+                // помещение данных в локальную базу данных
                 for (audit in loadExchangeRate) {
 
                     audit.id?.let {
                         ExchangeRateModel( // MedicationsModel - локальная таблица базы данных
                             it,
-                            audit.exchange.toString(),
+                            audit.AUD.toString(),
+                            audit.EUR.toString(),
+                            audit.JPY.toString(),
+                            audit.MDL.toString(),
+                            audit.RUB.toString(),
+
                         )
                     }?.let {
                         exchangeRateDataSource.insert(
@@ -44,7 +49,7 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                         )
                     }
 
-                }*/
+                }
 
                 Toast.makeText(context, "ЗАГРУЗКА", Toast.LENGTH_SHORT).show()
             }
