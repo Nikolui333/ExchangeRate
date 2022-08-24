@@ -42,9 +42,8 @@ class ExchangeRateFragment : Fragment() {
     private fun loadExchangeRate(){
 
         exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
-            // setList наполняет адаптер данными
+
             exchangeRateAdapter?.setList(it)
-            // notifyDataSetChanged обновляет адаптер
             exchangeRateAdapter?.notifyDataSetChanged()
         })
 

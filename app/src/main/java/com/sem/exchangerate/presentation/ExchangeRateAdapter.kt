@@ -23,27 +23,25 @@ class ExchangeRateAdapter() : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeR
     }
 
     override fun getItemCount(): Int {
-        return list.size
-        //exchangeRate.size
+        return exchangeRate.size //list.size
     }
 
     override fun onBindViewHolder(holder: ExchangeRateHolder, position: Int) {
-        holder.bind(/*exchangeRate[position],*/ list[position])
+        holder.bind(exchangeRate[position], list[position])
 
     }
 
     fun setList(exchangeRateList: List<ExchangeRateModel>) {
        // exchangeRate.clear()
-        exchangeRate.addAll(exchangeRateList) // заполнение medications данными
+        exchangeRate.addAll(exchangeRateList)
     }
 
     class ExchangeRateHolder(val binding: ExchangeRateItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(/*exchangeRateModel: ExchangeRateModel,*/ currency : String){
+        fun bind(exchangeRateModel: ExchangeRateModel, currency : String){
             binding.name.text = currency
                // exchangeRateModel.name
-            binding.num.text = currency
-                //exchangeRateModel.exchange.toString()
+            binding.num.text = exchangeRateModel.AUD.toString() //currency
         }
 
     }

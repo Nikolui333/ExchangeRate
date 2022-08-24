@@ -31,27 +31,10 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                 // получаем данные с сервера
                 loadExchangeRate = (response.body() as ExchangeRateResponseModel?)!!
 
-/*                // помещение данных в локальную базу данных
-                for (audit in loadExchangeRate) {
 
-                   // audit.id = 1
-                    audit.id?.let {
-                        ExchangeRateModel(
-                            it,
-                            audit.AUD.toString(),
-                            audit.EUR.toString(),
-                            audit.JPY.toString(),
-                            audit.MDL.toString(),
-                            audit.RUB.toString(),
+                exchangeRateDataSource.insert(ExchangeRateModel( 1, loadExchangeRate.rates?.AUD.toString(), loadExchangeRate.rates?.EUR.toString(), loadExchangeRate.rates?.JPY.toString(),
+                        loadExchangeRate.rates?.MDL.toString(),loadExchangeRate.rates?.RUB.toString()))
 
-                        )
-                    }?.let {
-                        exchangeRateDataSource.insert(
-                            it
-                        )
-                    }
-
-                }*/
 
                 Toast.makeText(context, "ЗАГРУЗКА", Toast.LENGTH_SHORT).show()
             }

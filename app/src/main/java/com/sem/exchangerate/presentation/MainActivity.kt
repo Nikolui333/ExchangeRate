@@ -23,10 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding?.topMainMenu)
 
-        // запуск фрагмента Home (в данном случае он является фрагментом по умолчанию)
         supportFragmentManager.beginTransaction().replace(R.id.mainContent, ExchangeRateFragment()).commit()
 
-        // обработчик нажатий по вкладнкам
         binding?.bottomMainMenu?.setOnItemSelectedListener { item ->
 
             when(item.itemId) {
