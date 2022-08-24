@@ -8,6 +8,7 @@ import com.sem.exchangerate.data.dataSource.ApiDataSource
 import com.sem.exchangerate.data.dataSource.ExchangeRateDataSource
 import com.sem.exchangerate.data.models.ExchangeRateApiModel
 import com.sem.exchangerate.data.models.ExchangeRateModel
+import com.sem.exchangerate.data.models.ExchangeRateResponseModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,19 +19,19 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
     override fun startMigration (context: Context) {
 
         val call = ApiClient.instance?.api?.loadExchangeRateApi()
-        call?.enqueue(object: Callback<ArrayList<ExchangeRateApiModel>> {
+        call?.enqueue(object: Callback<ExchangeRateResponseModel> {
             override fun onResponse(
-                call: Call<ArrayList<ExchangeRateApiModel>>,
-                response: Response<ArrayList<ExchangeRateApiModel>>
+                call: Call<ExchangeRateResponseModel>,
+                response: Response<ExchangeRateResponseModel>
             ) {
                 // создаём список
-                var loadExchangeRate: ArrayList<ExchangeRateApiModel>? = null
+                var loadExchangeRate: ExchangeRateResponseModel? = null
                 // очищаем массив
-                loadExchangeRate?.clear()
+              //  loadExchangeRate?.clear()
                 // получаем данные с сервера
-                loadExchangeRate = (response.body() as ArrayList<ExchangeRateApiModel>?)!!
+                loadExchangeRate = (response.body() as ExchangeRateResponseModel?)!!
 
-                // помещение данных в локальную базу данных
+/*                // помещение данных в локальную базу данных
                 for (audit in loadExchangeRate) {
 
                    // audit.id = 1
@@ -50,12 +51,12 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                         )
                     }
 
-                }
+                }*/
 
                 Toast.makeText(context, "ЗАГРУЗКА", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onFailure(call: Call<ArrayList<ExchangeRateApiModel>>, t: Throwable) {
+            override fun onFailure(call: Call<ExchangeRateResponseModel/*ArrayList<ExchangeRateApiModel>*/>, t: Throwable) {
                 Toast.makeText(context, "ОШИБКА! ВКЛЮЧИТЕ ИНТЕРНЕТ!", Toast.LENGTH_SHORT).show()
                 Log.e("ApiDataSource", "onFailure", t)
             }
