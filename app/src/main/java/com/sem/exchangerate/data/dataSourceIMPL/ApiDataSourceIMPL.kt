@@ -1,6 +1,7 @@
 package com.sem.exchangerate.data.dataSourceIMPL
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import com.sem.exchangerate.data.api.ApiClient
 import com.sem.exchangerate.data.dataSource.ApiDataSource
@@ -16,9 +17,8 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
 
     override fun startMigration (context: Context) {
 
-        // вызываем ApiClient в котором содержится ссылка для получения данных
         val call = ApiClient.instance?.api?.loadExchangeRateApi()
-        call?.enqueue(object: Callback<ArrayList<ExchangeRateApiModel>> { // MedicationsApiModel идентична таблице базы данных на сервере
+        call?.enqueue(object: Callback<ArrayList<ExchangeRateApiModel>> {
             override fun onResponse(
                 call: Call<ArrayList<ExchangeRateApiModel>>,
                 response: Response<ArrayList<ExchangeRateApiModel>>
@@ -33,8 +33,9 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                 // помещение данных в локальную базу данных
                 for (audit in loadExchangeRate) {
 
+                   // audit.id = 1
                     audit.id?.let {
-                        ExchangeRateModel( // MedicationsModel - локальная таблица базы данных
+                        ExchangeRateModel(
                             it,
                             audit.AUD.toString(),
                             audit.EUR.toString(),
@@ -56,7 +57,7 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
 
             override fun onFailure(call: Call<ArrayList<ExchangeRateApiModel>>, t: Throwable) {
                 Toast.makeText(context, "ОШИБКА! ВКЛЮЧИТЕ ИНТЕРНЕТ!", Toast.LENGTH_SHORT).show()
-
+                Log.e("ApiDataSource", "onFailure", t)
             }
         })
 

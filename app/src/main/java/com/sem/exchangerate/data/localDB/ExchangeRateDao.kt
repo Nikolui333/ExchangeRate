@@ -16,4 +16,6 @@ interface ExchangeRateDao {
     @Query("SELECT * FROM exchange_rate_table")
     fun getCurrency() : LiveData<List<ExchangeRateModel>>
 
+    @Query("DELETE FROM exchange_rate_table")
+    suspend fun clear()
 }

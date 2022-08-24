@@ -16,7 +16,7 @@ class ExchangeRateRepository(private val exchangeRateApiDataSource: ApiDataSourc
     }
 
     override suspend fun startMigration(context: Context) {
-       // exchangeRateDataSource.clear()
+        exchangeRateDataSource.clear()
         exchangeRateApiDataSource.startMigration(context)
     }
 

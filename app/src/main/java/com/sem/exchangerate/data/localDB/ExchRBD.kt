@@ -6,7 +6,7 @@ import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.data.models.FavouriteModel
 
 @Database(entities = [ExchangeRateModel::class, FavouriteModel::class], version = 1)
-abstract class ERDataBase : RoomDatabase() {
+abstract class ExchRBD : RoomDatabase()  {
 
     abstract val exchangeRateDao : ExchangeRateDao
 

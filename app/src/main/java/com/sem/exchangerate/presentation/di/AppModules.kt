@@ -5,7 +5,7 @@ import com.sem.exchangerate.data.dataSource.ApiDataSource
 import com.sem.exchangerate.data.dataSource.ExchangeRateDataSource
 import com.sem.exchangerate.data.dataSourceIMPL.ApiDataSourceIMPL
 import com.sem.exchangerate.data.dataSourceIMPL.ExchangeRateDataSourceIMPL
-import com.sem.exchangerate.data.localDB.ERDataBase
+import com.sem.exchangerate.data.localDB.ExchRBD
 import com.sem.exchangerate.data.repository.ExchangeRateRepository
 import com.sem.exchangerate.domain.repository.ExchangeRateCall
 import com.sem.exchangerate.domain.useCase.ExchangeRateUseCase
@@ -18,12 +18,12 @@ val exchangeRate = module {
 
     single {
         Room.databaseBuilder(
-            androidContext(), ERDataBase::class.java,
+            androidContext(), ExchRBD::class.java,
             "dbO"
         ).build()
     }
 
-    single { get<ERDataBase>().exchangeRateDao }
+    single { get<ExchRBD>().exchangeRateDao }
 
     single<ExchangeRateDataSource> {
         ExchangeRateDataSourceIMPL(

@@ -9,4 +9,6 @@ interface ExchangeRateDataSource {
 
     fun loadExchangeRate(): LiveData<List<ExchangeRateModel>>
 
+    suspend fun clear()
+
 }

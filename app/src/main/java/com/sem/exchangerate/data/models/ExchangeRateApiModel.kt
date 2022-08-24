@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class ExchangeRateApiModel (
 
     @SerializedName("id") @Expose
-    val id: Int? = null,
+    var id: Int? = 1,
 
     @SerializedName("AUD") @Expose
     val AUD: Double? = null,

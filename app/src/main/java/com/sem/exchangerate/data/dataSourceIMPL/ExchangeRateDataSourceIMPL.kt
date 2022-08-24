@@ -19,4 +19,9 @@ class ExchangeRateDataSourceIMPL(private val dao: ExchangeRateDao) : ExchangeRat
         return dao.getCurrency()
     }
 
+    override suspend fun clear() {
+        CoroutineScope(Dispatchers.IO).launch {
+            dao.clear()}
+    }
+
 }
