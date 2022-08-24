@@ -12,12 +12,14 @@ import com.sem.exchangerate.databinding.FragmentExchangeRateBinding
 import com.sem.exchangerate.presentation.viewModel.ExchangeRateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
+import com.sem.exchangerate.presentation.viewModel.CurrencyViewModel
 
 class ExchangeRateFragment : Fragment() {
 
     private var binding: FragmentExchangeRateBinding? = null
     private var exchangeRateAdapter : ExchangeRateAdapter? = null
     private val exchangeRateViewModel : ExchangeRateViewModel? by viewModel()
+    private val currencyViewModel : CurrencyViewModel? by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.sem.exchangerate.R
 import com.sem.exchangerate.databinding.ActivityMainBinding
+import com.sem.exchangerate.presentation.viewModel.CurrencyViewModel
 import com.sem.exchangerate.presentation.viewModel.ExchangeRateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -13,13 +14,16 @@ class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
 
     private val exchangeRateViewModel : ExchangeRateViewModel by viewModel()
+    private val currencyViewModel : CurrencyViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+
         exchangeRateViewModel.migration(this)
+        currencyViewModel.migration(this)
 
         setSupportActionBar(binding?.topMainMenu)
 

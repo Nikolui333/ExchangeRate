@@ -5,7 +5,9 @@ import android.util.Log
 import android.widget.Toast
 import com.sem.exchangerate.data.api.ApiClient
 import com.sem.exchangerate.data.dataSource.ApiDataSource
+import com.sem.exchangerate.data.dataSource.CurrencyDataSource
 import com.sem.exchangerate.data.dataSource.ExchangeRateDataSource
+import com.sem.exchangerate.data.models.CurrencyModel
 import com.sem.exchangerate.data.models.ExchangeRateApiModel
 import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.data.models.ExchangeRateResponseModel
@@ -13,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSource):
+class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSource, private val currencyDataSource: CurrencyDataSource):
     ApiDataSource {
 
     override fun startMigration (context: Context) {
@@ -34,6 +36,13 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
 
                 exchangeRateDataSource.insert(ExchangeRateModel( 1, loadExchangeRate.rates?.AUD.toString(), loadExchangeRate.rates?.EUR.toString(), loadExchangeRate.rates?.JPY.toString(),
                         loadExchangeRate.rates?.MDL.toString(),loadExchangeRate.rates?.RUB.toString()))
+
+                currencyDataSource.insert(CurrencyModel(1,"AUD", loadExchangeRate.rates?.AUD.toString()))
+                currencyDataSource.insert(CurrencyModel(2,"EUR", loadExchangeRate.rates?.EUR.toString()))
+                currencyDataSource.insert(CurrencyModel(3,"JPY", loadExchangeRate.rates?.JPY.toString()))
+                currencyDataSource.insert(CurrencyModel(4,"MDL", loadExchangeRate.rates?.MDL.toString()))
+                currencyDataSource.insert(CurrencyModel(5,"RUB", loadExchangeRate.rates?.RUB.toString()))
+
 
 
                 Toast.makeText(context, "ЗАГРУЗКА", Toast.LENGTH_SHORT).show()

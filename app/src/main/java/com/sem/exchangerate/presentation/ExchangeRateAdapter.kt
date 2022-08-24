@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sem.exchangerate.R
+import com.sem.exchangerate.data.models.CurrencyModel
 import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.databinding.ExchangeRateItemBinding
 
@@ -32,7 +33,7 @@ class ExchangeRateAdapter() : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeR
     }
 
     fun setList(exchangeRateList: List<ExchangeRateModel>) {
-       // exchangeRate.clear()
+        // exchangeRate.clear()
         exchangeRate.addAll(exchangeRateList)
     }
 
@@ -40,7 +41,7 @@ class ExchangeRateAdapter() : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeR
 
         fun bind(exchangeRateModel: ExchangeRateModel, currency : String){
             binding.name.text = currency
-               // exchangeRateModel.name
+            // exchangeRateModel.name
             binding.num.text = exchangeRateModel.AUD.toString() //currency
         }
 
