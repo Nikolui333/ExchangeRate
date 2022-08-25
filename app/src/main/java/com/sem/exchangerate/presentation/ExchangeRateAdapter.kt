@@ -2,13 +2,16 @@ package com.sem.exchangerate.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sem.exchangerate.R
 import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.databinding.ExchangeRateItemBinding
+import android.view.View
 
-class ExchangeRateAdapter() : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeRateHolder>() {
+class ExchangeRateAdapter(private val addToCard:(ExchangeRateModel)->Unit, private val removeFromCard:(ExchangeRateModel)->Unit,
+                          private val loadMedicationsToCardFromCardProduct:(Int, AppCompatImageButton, AppCompatImageButton)->Unit) : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeRateHolder>() {
 
     private val exchangeRate = ArrayList<ExchangeRateModel>()
 
@@ -25,7 +28,7 @@ class ExchangeRateAdapter() : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeR
     }
 
     override fun onBindViewHolder(holder: ExchangeRateHolder, position: Int) {
-        holder.bind(exchangeRate[position])
+        holder.bind(exchangeRate[position], addToCard, removeFromCard, loadMedicationsToCardFromCardProduct)
 
     }
 
@@ -36,11 +39,28 @@ class ExchangeRateAdapter() : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeR
 
     class ExchangeRateHolder(val binding: ExchangeRateItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(exchangeRateModel: ExchangeRateModel){
+        fun bind(exchangeRateModel: ExchangeRateModel, addToCard: (ExchangeRateModel) -> Unit,
+                 removeFromCard: (ExchangeRateModel) -> Unit,
+                 loadMedicineToCardFromCardProduct: (Int, AppCompatImageButton, AppCompatImageButton) -> Unit){
             binding.name.text = exchangeRateModel.name
             binding.num.text = exchangeRateModel.exchange
-        }
 
+
+        binding.addToFavourite.setOnClickListener(View.OnClickListener {
+
+            addToCard(exchangeRateModel)
+
+        })
+
+        binding.removeFromFavourite.setOnClickListener(View.OnClickListener {
+
+            removeFromCard(exchangeRateModel)
+
+        })
+
+        loadMedicineToCardFromCardProduct(exchangeRateModel.id, binding.addToFavourite, binding.removeFromFavourite)
+
+        }
     }
 
 }
