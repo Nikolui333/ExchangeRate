@@ -9,25 +9,23 @@ import kotlinx.coroutines.launch
 
 class FavouriteUseCase(private val favouriteCall: FavouriteCall) {
 
-    // добавление уникального товара в корзину
     suspend fun insert(cardModel: FavouriteModel) {
         favouriteCall.insert(cardModel)    }
 
-    // отправка данный (заказа) на сервер
-    fun loadMedicineFromCard(): LiveData<List<FavouriteModel>> {
-        return favouriteCall.loadMedicineFromCard()    }
+    fun loadCurrencyFromFavourite(): LiveData<List<FavouriteModel>> {
+        return favouriteCall.loadCurrencyFromFavourite()    }
 
-    fun loadMedicineToCardFromCardProduct(idProduct:String): LiveData<List<FavouriteModel>> {
-        return favouriteCall.loadMedicineToCardFromCardProduct(idProduct)    }
+    fun loadCurrencyToCardFromFavourite(idProduct:String): LiveData<List<FavouriteModel>> {
+        return favouriteCall.loadCurrencyToCardFromFavourite(idProduct)    }
 
-    suspend fun deleteProductFromCard(idProduct:Int) {
+    suspend fun deleteCurrencyFromFavourite(idProduct:Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            favouriteCall.deleteProductFromCard(idProduct)}
+            favouriteCall.deleteCurrencyFromFavourite(idProduct)}
     }
 
-    suspend fun deleteProductToCardFromCardProduct(idProduct:String) {
+    suspend fun deleteCurrencyToCardFromFavourite(idProduct:String) {
         CoroutineScope(Dispatchers.IO).launch {
-            favouriteCall.deleteProductToCardFromCardProduct(idProduct)}
+            favouriteCall.deleteCurrencyToCardFromFavourite(idProduct)}
     }
 
 }

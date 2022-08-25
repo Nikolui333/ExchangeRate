@@ -10,8 +10,8 @@ import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.databinding.ExchangeRateItemBinding
 import android.view.View
 
-class ExchangeRateAdapter(private val addToCard:(ExchangeRateModel)->Unit, private val removeFromCard:(ExchangeRateModel)->Unit,
-                          private val loadMedicationsToCardFromCardProduct:(Int, AppCompatImageButton, AppCompatImageButton)->Unit) : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeRateHolder>() {
+class ExchangeRateAdapter(private val addToFavourite:(ExchangeRateModel)->Unit, private val removeFromFavourite:(ExchangeRateModel)->Unit,
+                          private val loadMedicationsToCardFromFavourite:(Int, AppCompatImageButton, AppCompatImageButton)->Unit) : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeRateHolder>() {
 
     private val exchangeRate = ArrayList<ExchangeRateModel>()
 
@@ -28,7 +28,7 @@ class ExchangeRateAdapter(private val addToCard:(ExchangeRateModel)->Unit, priva
     }
 
     override fun onBindViewHolder(holder: ExchangeRateHolder, position: Int) {
-        holder.bind(exchangeRate[position], addToCard, removeFromCard, loadMedicationsToCardFromCardProduct)
+        holder.bind(exchangeRate[position], addToFavourite, removeFromFavourite, loadMedicationsToCardFromFavourite)
 
     }
 
@@ -39,26 +39,26 @@ class ExchangeRateAdapter(private val addToCard:(ExchangeRateModel)->Unit, priva
 
     class ExchangeRateHolder(val binding: ExchangeRateItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(exchangeRateModel: ExchangeRateModel, addToCard: (ExchangeRateModel) -> Unit,
-                 removeFromCard: (ExchangeRateModel) -> Unit,
-                 loadMedicineToCardFromCardProduct: (Int, AppCompatImageButton, AppCompatImageButton) -> Unit){
+        fun bind(exchangeRateModel: ExchangeRateModel, addToFavourite: (ExchangeRateModel) -> Unit,
+                 removeFromFavourite: (ExchangeRateModel) -> Unit,
+                 loadMedicineToCardFromFavourite: (Int, AppCompatImageButton, AppCompatImageButton) -> Unit){
             binding.name.text = exchangeRateModel.name
             binding.num.text = exchangeRateModel.exchange
 
 
         binding.addToFavourite.setOnClickListener(View.OnClickListener {
 
-            addToCard(exchangeRateModel)
+            addToFavourite(exchangeRateModel)
 
         })
 
         binding.removeFromFavourite.setOnClickListener(View.OnClickListener {
 
-            removeFromCard(exchangeRateModel)
+            removeFromFavourite(exchangeRateModel)
 
         })
 
-        loadMedicineToCardFromCardProduct(exchangeRateModel.id, binding.addToFavourite, binding.removeFromFavourite)
+        loadMedicineToCardFromFavourite(exchangeRateModel.id, binding.addToFavourite, binding.removeFromFavourite)
 
         }
     }

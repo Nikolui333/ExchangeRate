@@ -47,7 +47,7 @@ class ExchangeRateFragment : Fragment() {
             removeFromCard(
                 exchangeRateModel
             )
-            // отображение кнопок добавления или удаления товара
+            // отображение кнопок добавления или удаления
         }, { idProduct:Int, addToBasket: AppCompatImageButton,
              removeFromBasket: AppCompatImageButton ->
             loadMedicineToCardFromCardProduct(
@@ -68,29 +68,26 @@ class ExchangeRateFragment : Fragment() {
 
     }
 
-    // добавление товара в корзину
+    // добавление в избранное
     private fun addToCard(exchangeRateModel: ExchangeRateModel) {
         favouriteViewModel.startInsert(exchangeRateModel.name,
             exchangeRateModel.exchange,
             exchangeRateModel.id.toString())
     }
 
-    // удаление товара из корзины
+    // удаление из избранного
     private fun removeFromCard(exchangeRateModel: ExchangeRateModel) {
-        favouriteViewModel.deleteProductToCardFromCardProduct(exchangeRateModel.id.toString())
+        favouriteViewModel.deleteCurrencyToCardFromFavourite(exchangeRateModel.id.toString())
     }
 
-    // проверяем, есть ли товар в корзине и узнаём его колличество
+    // проверка, есть ли валюта в разделе избранное
     private fun loadMedicineToCardFromCardProduct (idProduct:Int, addToBasket: AppCompatImageButton,
                                                    removeFromBasket: AppCompatImageButton
     ){
-        // передаём id, который приходит из адаптера
-        favouriteViewModel.loadMedicineToCardFromCardProduct(idProduct.toString()).observe(viewLifecycleOwner, Observer {
+        favouriteViewModel.loadCurrencyToCardFromFavourite(idProduct.toString()).observe(viewLifecycleOwner, Observer {
 
-            // в переменную count получаем колличество товара
-            val count = it.count() // it - это неявное имя одного параметра в лямбда-функции
+            val count = it.count()
 
-            // если колличество больше нуля, убрать кнопку добавления и отобразить кнопку удаления
             if (count>0) {
                 addToBasket.visibility = View.GONE
                 removeFromBasket.visibility = View.VISIBLE

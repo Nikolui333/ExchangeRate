@@ -8,4 +8,6 @@
     <string name="rateNum">1</string>
     <string name="rateName">currency name</string>
 
+    <string name="base">Base currency: USD</string>
+
 </resources>

@@ -49,7 +49,7 @@ class FavouriteFragment : Fragment(){
     // загрузка всех товаров из корзины
     private fun loadMedicineFromCard() {
 
-        favouriteViewModel.loadMedicineFromCard.observe(viewLifecycleOwner, Observer {
+        favouriteViewModel.loadCurrencyFromFavourite.observe(viewLifecycleOwner, Observer {
             favouriteAdapter?.setList(it)
             favouriteAdapter?.notifyDataSetChanged()
 
@@ -58,7 +58,7 @@ class FavouriteFragment : Fragment(){
 
     private fun deleteFromCard(favouriteModel: FavouriteModel){
 
-        favouriteViewModel.deleteProductFromCard(favouriteModel.id)
+        favouriteViewModel.deleteCurrencyFromFavourite(favouriteModel.id)
     }
 
 }

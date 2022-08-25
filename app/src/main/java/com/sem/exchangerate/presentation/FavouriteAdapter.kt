@@ -10,9 +10,9 @@ import com.sem.exchangerate.data.models.FavouriteModel
 import com.sem.exchangerate.databinding.FavouriteItemBinding
 import com.squareup.picasso.Picasso
 
-class FavouriteAdapter(private val deleteFromCard:(FavouriteModel)->Unit) : RecyclerView.Adapter<FavouriteAdapter.FavouriteHolder>() {
+class FavouriteAdapter(private val deleteFromFavourite:(FavouriteModel)->Unit) : RecyclerView.Adapter<FavouriteAdapter.FavouriteHolder>() {
 
-    private val productsFromCard = ArrayList<FavouriteModel>()
+    private val currencyFromFavourite = ArrayList<FavouriteModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouriteHolder {
 
@@ -23,17 +23,17 @@ class FavouriteAdapter(private val deleteFromCard:(FavouriteModel)->Unit) : Recy
     }
 
     override fun getItemCount(): Int {
-        return productsFromCard.size
+        return currencyFromFavourite.size
     }
 
     override fun onBindViewHolder(holder: FavouriteHolder, position: Int) {
-        holder.bind(productsFromCard[position], deleteFromCard)
+        holder.bind(currencyFromFavourite[position], deleteFromFavourite)
 
     }
 
     fun setList(cardList: List<FavouriteModel>) {
-        productsFromCard.clear()
-        productsFromCard.addAll(cardList)
+        currencyFromFavourite.clear()
+        currencyFromFavourite.addAll(cardList)
 
     }
 

@@ -14,30 +14,26 @@ class FavouriteViewModel(private val favouriteUseCase: FavouriteUseCase) : ViewM
             FavouriteModel(0, name, exchange, idFavourite)
         )
     }
-    // viewModelScope прекращает работу внутри ViewModel (в данном случае в методе insert) в случае, если пользователь покинул экран
-    // метод insert отвечает за добавление нового вида товара в корзину
+
     private fun insert(favouriteModel: FavouriteModel) = viewModelScope.launch{
         favouriteUseCase.insert(favouriteModel)
     }
 
-    // так как в методе loadMedicineFromCard() класса CardUseCase нет принимаемых значений, вместо создания метода,
-    // возвращающего метод loadMedicineFromCard(), можно присвоить его переменной
-    val loadMedicineFromCard = favouriteUseCase.loadMedicineFromCard()
+    val loadCurrencyFromFavourite = favouriteUseCase.loadCurrencyFromFavourite()
 
-    // LiveData хранит данные, которые можно получать каждый раз, когда что-то меняется
-    // метод loadMedicineToCardFromCardProduct проверяет, есть ли товар в корзине
-    fun loadMedicineToCardFromCardProduct(idProduct:String): LiveData<List<FavouriteModel>> {
-        return favouriteUseCase.loadMedicineToCardFromCardProduct(idProduct)
+    // метод loadCurrencyToCardFromFavourite проверяет, есть ли валюта в разделе избранное
+    fun loadCurrencyToCardFromFavourite(idProduct:String): LiveData<List<FavouriteModel>> {
+        return favouriteUseCase.loadCurrencyToCardFromFavourite(idProduct)
     }
-    // методо deleteProductFromCard удаляет выбранный вид лекарства из корзины во вкладке корзины
-    fun deleteProductFromCard(idProduct:Int) = viewModelScope.launch{
+    // методо deleteCurrencyFromFavourite удаляет выбранную валюту из вкладки избранное
+    fun deleteCurrencyFromFavourite(idProduct:Int) = viewModelScope.launch{
 
-        favouriteUseCase.deleteProductFromCard(idProduct)
+        favouriteUseCase.deleteCurrencyFromFavourite(idProduct)
     }
-    // метод deleteProductToCardFromCardProduct удаляет выбранный вид лекарства из корзины на вкладке со списком препаратов
-    fun deleteProductToCardFromCardProduct(idProduct:String) = viewModelScope.launch{
+    // метод deleteCurrencyToCardFromFavourite уибрает добавление в избранное выбранной валюты, на вкладке всех валют
+    fun deleteCurrencyToCardFromFavourite(idProduct:String) = viewModelScope.launch{
 
-        favouriteUseCase.deleteProductToCardFromCardProduct(idProduct)
+        favouriteUseCase.deleteCurrencyToCardFromFavourite(idProduct)
     }
 
 

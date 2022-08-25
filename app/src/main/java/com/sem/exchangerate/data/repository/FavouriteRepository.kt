@@ -14,22 +14,22 @@ class FavouriteRepository(private val dao: FavouriteDao) : FavouriteCall {
         dao.insert(favouriteModel)
     }
 
-    override fun loadMedicineFromCard(): LiveData<List<FavouriteModel>> {
-        return dao.loadMedicineFromCard()
+    override fun loadCurrencyFromFavourite(): LiveData<List<FavouriteModel>> {
+        return dao.loadCurrencyFromFavourite()
     }
 
-    override fun loadMedicineToCardFromCardProduct(idProduct: String): LiveData<List<FavouriteModel>> {
-        return dao.loadMedicineToCardFromCardProduct(idProduct)
+    override fun loadCurrencyToCardFromFavourite(idProduct: String): LiveData<List<FavouriteModel>> {
+        return dao.loadCurrencyToCardFromFavourite(idProduct)
     }
 
-    override suspend fun deleteProductFromCard(idProduct: Int) {
+    override suspend fun deleteCurrencyFromFavourite(idProduct: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            dao.deleteProductFromCard(idProduct)}
+            dao.deleteCurrencyFromFavourite(idProduct)}
     }
 
-    override suspend fun deleteProductToCardFromCardProduct(idProduct: String) {
+    override suspend fun deleteCurrencyToCardFromFavourite(idProduct: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            dao.deleteProductToCardFromCardProduct(idProduct)}
+            dao.deleteCurrencyToCardFromFavourite(idProduct)}
     }
 
 
