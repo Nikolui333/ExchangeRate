@@ -11,7 +11,13 @@ class FavouriteModel (
     @ColumnInfo(name = "id")
     val id:Int,
 
+    @ColumnInfo(name = "name")
+    val name: String,
+
     @ColumnInfo(name = "exchange")
-    val exchange:Double
+    val exchange:String,
+
+    @ColumnInfo(name = "favourite_id")
+    val idFavourite:String
 
 )

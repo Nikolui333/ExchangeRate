@@ -2,6 +2,7 @@ package com.sem.exchangerate.presentation
 
 import android.app.Application
 import com.sem.exchangerate.presentation.di.exchangeRate
+import com.sem.exchangerate.presentation.di.favourite
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -19,7 +20,7 @@ class App: Application() {
             //inject Android context
             androidContext(this@App)
 
-            modules(exchangeRate)
+            modules(exchangeRate, favourite)
 
         }
 
