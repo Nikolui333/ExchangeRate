@@ -5,17 +5,14 @@ import android.util.Log
 import android.widget.Toast
 import com.sem.exchangerate.data.api.ApiClient
 import com.sem.exchangerate.data.dataSource.ApiDataSource
-import com.sem.exchangerate.data.dataSource.CurrencyDataSource
 import com.sem.exchangerate.data.dataSource.ExchangeRateDataSource
-import com.sem.exchangerate.data.models.CurrencyModel
-import com.sem.exchangerate.data.models.ExchangeRateApiModel
 import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.data.models.ExchangeRateResponseModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSource, private val currencyDataSource: CurrencyDataSource):
+class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSource):
     ApiDataSource {
 
     override fun startMigration (context: Context) {
@@ -26,6 +23,8 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                 call: Call<ExchangeRateResponseModel>,
                 response: Response<ExchangeRateResponseModel>
             ) {
+
+                Log.d("ApiDataSource", "onResponse status: ${response.code()}")
                 // создаём список
                 var loadExchangeRate: ExchangeRateResponseModel? = null
                 // очищаем массив
@@ -33,15 +32,14 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                 // получаем данные с сервера
                 loadExchangeRate = (response.body() as ExchangeRateResponseModel?)!!
 
+              /*  exchangeRateDataSource.insert(ExchangeRateModel( 1, loadExchangeRate.rates?.AUD.toString(), loadExchangeRate.rates?.EUR.toString(), loadExchangeRate.rates?.JPY.toString(),
+                        loadExchangeRate.rates?.MDL.toString(),loadExchangeRate.rates?.RUB.toString()))*/
 
-                exchangeRateDataSource.insert(ExchangeRateModel( 1, loadExchangeRate.rates?.AUD.toString(), loadExchangeRate.rates?.EUR.toString(), loadExchangeRate.rates?.JPY.toString(),
-                        loadExchangeRate.rates?.MDL.toString(),loadExchangeRate.rates?.RUB.toString()))
-
-                currencyDataSource.insert(CurrencyModel(1,"AUD", loadExchangeRate.rates?.AUD.toString()))
-                currencyDataSource.insert(CurrencyModel(2,"EUR", loadExchangeRate.rates?.EUR.toString()))
-                currencyDataSource.insert(CurrencyModel(3,"JPY", loadExchangeRate.rates?.JPY.toString()))
-                currencyDataSource.insert(CurrencyModel(4,"MDL", loadExchangeRate.rates?.MDL.toString()))
-                currencyDataSource.insert(CurrencyModel(5,"RUB", loadExchangeRate.rates?.RUB.toString()))
+                exchangeRateDataSource.insert(ExchangeRateModel(1,"AUD", loadExchangeRate.rates?.AUD.toString()))
+                exchangeRateDataSource.insert(ExchangeRateModel(2,"EUR", loadExchangeRate.rates?.EUR.toString()))
+                exchangeRateDataSource.insert(ExchangeRateModel(3,"JPY", loadExchangeRate.rates?.JPY.toString()))
+                exchangeRateDataSource.insert(ExchangeRateModel(4,"MDL", loadExchangeRate.rates?.MDL.toString()))
+                exchangeRateDataSource.insert(ExchangeRateModel(5,"RUB", loadExchangeRate.rates?.RUB.toString()))
 
 
 
@@ -50,7 +48,7 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
 
             override fun onFailure(call: Call<ExchangeRateResponseModel/*ArrayList<ExchangeRateApiModel>*/>, t: Throwable) {
                 Toast.makeText(context, "ОШИБКА! ВКЛЮЧИТЕ ИНТЕРНЕТ!", Toast.LENGTH_SHORT).show()
-                Log.e("ApiDataSource", "onFailure", t)
+                Log.e("ApiDataSource2", "onFailure", t)
             }
         })
 

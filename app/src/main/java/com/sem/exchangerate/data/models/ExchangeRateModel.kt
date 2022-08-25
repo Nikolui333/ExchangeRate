@@ -11,15 +11,9 @@ class ExchangeRateModel(
     @ColumnInfo(name = "id")
     val id:Int,
 
-    @ColumnInfo(name = "AUD")
-    val AUD: String,
-    @ColumnInfo(name = "EUR")
-    val EUR: String,
-    @ColumnInfo(name = "JPY")
-    val JPY: String,
-    @ColumnInfo(name = "MDL")
-    val MDL: String,
-    @ColumnInfo(name = "RUB")
-    val RUB: String
+    @ColumnInfo(name = "name")
+    val name: String,
 
+    @ColumnInfo(name = "exchange")
+    val exchange:String
 )
