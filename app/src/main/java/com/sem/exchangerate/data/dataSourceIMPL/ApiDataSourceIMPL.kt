@@ -27,13 +27,10 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                 Log.d("ApiDataSource", "onResponse status: ${response.code()}")
                 // создаём список
                 var loadExchangeRate: ExchangeRateResponseModel? = null
-                // очищаем массив
               //  loadExchangeRate?.clear()
                 // получаем данные с сервера
                 loadExchangeRate = (response.body() as ExchangeRateResponseModel?)!!
 
-              /*  exchangeRateDataSource.insert(ExchangeRateModel( 1, loadExchangeRate.rates?.AUD.toString(), loadExchangeRate.rates?.EUR.toString(), loadExchangeRate.rates?.JPY.toString(),
-                        loadExchangeRate.rates?.MDL.toString(),loadExchangeRate.rates?.RUB.toString()))*/
 
                 exchangeRateDataSource.insert(ExchangeRateModel(1,"AUD", loadExchangeRate.rates?.AUD.toString()))
                 exchangeRateDataSource.insert(ExchangeRateModel(2,"EUR", loadExchangeRate.rates?.EUR.toString()))
@@ -46,7 +43,7 @@ class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSour
                 Toast.makeText(context, "ЗАГРУЗКА", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onFailure(call: Call<ExchangeRateResponseModel/*ArrayList<ExchangeRateApiModel>*/>, t: Throwable) {
+            override fun onFailure(call: Call<ExchangeRateResponseModel>, t: Throwable) {
                 Toast.makeText(context, "ОШИБКА! ВКЛЮЧИТЕ ИНТЕРНЕТ!", Toast.LENGTH_SHORT).show()
                 Log.e("ApiDataSource2", "onFailure", t)
             }

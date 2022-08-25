@@ -27,7 +27,7 @@ class FavouriteFragment : Fragment(){
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourite, container, false)
         initRecyclerCard()
-        loadMedicineFromCard()
+        loadCurrencyFromFavourite()
 
         return binding?.root
     }
@@ -39,15 +39,14 @@ class FavouriteFragment : Fragment(){
             LinearLayoutManager(context)
         favouriteAdapter =
             FavouriteAdapter ({ favouriteModel: FavouriteModel ->
-                deleteFromCard(
+                deleteFromFavourite(
                     favouriteModel
                 )
             })
         binding?.favouriteRateRV?.adapter = favouriteAdapter
     }
 
-    // загрузка всех товаров из корзины
-    private fun loadMedicineFromCard() {
+    private fun loadCurrencyFromFavourite() {
 
         favouriteViewModel.loadCurrencyFromFavourite.observe(viewLifecycleOwner, Observer {
             favouriteAdapter?.setList(it)
@@ -56,7 +55,7 @@ class FavouriteFragment : Fragment(){
         })
     }
 
-    private fun deleteFromCard(favouriteModel: FavouriteModel){
+    private fun deleteFromFavourite(favouriteModel: FavouriteModel){
 
         favouriteViewModel.deleteCurrencyFromFavourite(favouriteModel.id)
     }

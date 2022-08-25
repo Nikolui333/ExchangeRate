@@ -11,7 +11,7 @@ import com.sem.exchangerate.databinding.ExchangeRateItemBinding
 import android.view.View
 
 class ExchangeRateAdapter(private val addToFavourite:(ExchangeRateModel)->Unit, private val removeFromFavourite:(ExchangeRateModel)->Unit,
-                          private val loadMedicationsToCardFromFavourite:(Int, AppCompatImageButton, AppCompatImageButton)->Unit) : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeRateHolder>() {
+                          private val loadCurrencyToCardFromFavourite:(Int, AppCompatImageButton, AppCompatImageButton)->Unit) : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeRateHolder>() {
 
     private val exchangeRate = ArrayList<ExchangeRateModel>()
 
@@ -28,7 +28,7 @@ class ExchangeRateAdapter(private val addToFavourite:(ExchangeRateModel)->Unit, 
     }
 
     override fun onBindViewHolder(holder: ExchangeRateHolder, position: Int) {
-        holder.bind(exchangeRate[position], addToFavourite, removeFromFavourite, loadMedicationsToCardFromFavourite)
+        holder.bind(exchangeRate[position], addToFavourite, removeFromFavourite, loadCurrencyToCardFromFavourite)
 
     }
 
@@ -41,7 +41,7 @@ class ExchangeRateAdapter(private val addToFavourite:(ExchangeRateModel)->Unit, 
 
         fun bind(exchangeRateModel: ExchangeRateModel, addToFavourite: (ExchangeRateModel) -> Unit,
                  removeFromFavourite: (ExchangeRateModel) -> Unit,
-                 loadMedicineToCardFromFavourite: (Int, AppCompatImageButton, AppCompatImageButton) -> Unit){
+                 loadCurrencyToCardFromFavourite: (Int, AppCompatImageButton, AppCompatImageButton) -> Unit){
             binding.name.text = exchangeRateModel.name
             binding.num.text = exchangeRateModel.exchange
 
@@ -58,7 +58,7 @@ class ExchangeRateAdapter(private val addToFavourite:(ExchangeRateModel)->Unit, 
 
         })
 
-        loadMedicineToCardFromFavourite(exchangeRateModel.id, binding.addToFavourite, binding.removeFromFavourite)
+        loadCurrencyToCardFromFavourite(exchangeRateModel.id, binding.addToFavourite, binding.removeFromFavourite)
 
         }
     }

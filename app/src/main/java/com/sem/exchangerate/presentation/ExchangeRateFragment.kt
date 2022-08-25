@@ -40,17 +40,17 @@ class ExchangeRateFragment : Fragment() {
         binding?.exchangeRateRV?.layoutManager =
             LinearLayoutManager(context)
         exchangeRateAdapter = ExchangeRateAdapter({ exchangeRateModel: ExchangeRateModel ->
-            addToCard(
+            addToFavourite(
                 exchangeRateModel
             )
         }, { exchangeRateModel: ExchangeRateModel ->
-            removeFromCard(
+            removeFromFavourite(
                 exchangeRateModel
             )
             // отображение кнопок добавления или удаления
         }, { idProduct:Int, addToBasket: AppCompatImageButton,
              removeFromBasket: AppCompatImageButton ->
-            loadMedicineToCardFromCardProduct(
+            loadCurrencyToCardFromFavourite(
                 idProduct, addToBasket, removeFromBasket
             )
         })
@@ -69,19 +69,19 @@ class ExchangeRateFragment : Fragment() {
     }
 
     // добавление в избранное
-    private fun addToCard(exchangeRateModel: ExchangeRateModel) {
+    private fun addToFavourite(exchangeRateModel: ExchangeRateModel) {
         favouriteViewModel.startInsert(exchangeRateModel.name,
             exchangeRateModel.exchange,
             exchangeRateModel.id.toString())
     }
 
     // удаление из избранного
-    private fun removeFromCard(exchangeRateModel: ExchangeRateModel) {
+    private fun removeFromFavourite(exchangeRateModel: ExchangeRateModel) {
         favouriteViewModel.deleteCurrencyToCardFromFavourite(exchangeRateModel.id.toString())
     }
 
     // проверка, есть ли валюта в разделе избранное
-    private fun loadMedicineToCardFromCardProduct (idProduct:Int, addToBasket: AppCompatImageButton,
+    private fun loadCurrencyToCardFromFavourite (idProduct:Int, addToBasket: AppCompatImageButton,
                                                    removeFromBasket: AppCompatImageButton
     ){
         favouriteViewModel.loadCurrencyToCardFromFavourite(idProduct.toString()).observe(viewLifecycleOwner, Observer {

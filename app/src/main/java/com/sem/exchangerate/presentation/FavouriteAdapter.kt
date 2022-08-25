@@ -40,14 +40,14 @@ class FavouriteAdapter(private val deleteFromFavourite:(FavouriteModel)->Unit) :
     class FavouriteHolder(val binding: FavouriteItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            favouriteModel: FavouriteModel, deleteFromCard: (FavouriteModel) -> Unit
+            favouriteModel: FavouriteModel, deleteFromFavourite: (FavouriteModel) -> Unit
         ) {
 
             binding.name.text = favouriteModel.name
             binding.num.text = favouriteModel.exchange
 
             binding.removeFromFavourite.setOnClickListener(View.OnClickListener {
-                deleteFromCard(favouriteModel) // удаление из карточки, когда пользоваетль находится в корзине
+                deleteFromFavourite(favouriteModel)
             })
 
         }
