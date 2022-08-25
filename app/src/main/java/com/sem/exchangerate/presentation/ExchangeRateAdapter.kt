@@ -12,8 +12,6 @@ class ExchangeRateAdapter() : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeR
 
     private val exchangeRate = ArrayList<ExchangeRateModel>()
 
-    private val list = arrayListOf("AUD", "EUR", "RUB", "JPY","JPY")
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExchangeRateHolder {
 
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -23,25 +21,24 @@ class ExchangeRateAdapter() : RecyclerView.Adapter<ExchangeRateAdapter.ExchangeR
     }
 
     override fun getItemCount(): Int {
-        return exchangeRate.size //list.size
+        return exchangeRate.size
     }
 
     override fun onBindViewHolder(holder: ExchangeRateHolder, position: Int) {
-        holder.bind(exchangeRate[position], list[position])
+        holder.bind(exchangeRate[position])
 
     }
 
     fun setList(exchangeRateList: List<ExchangeRateModel>) {
-        // exchangeRate.clear()
+        exchangeRate.clear()
         exchangeRate.addAll(exchangeRateList)
     }
 
     class ExchangeRateHolder(val binding: ExchangeRateItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(exchangeRateModel: ExchangeRateModel, currency : String){
+        fun bind(exchangeRateModel: ExchangeRateModel){
             binding.name.text = exchangeRateModel.name
-            // exchangeRateModel.name
-            binding.num.text = exchangeRateModel.exchange //currency
+            binding.num.text = exchangeRateModel.exchange
         }
 
     }
