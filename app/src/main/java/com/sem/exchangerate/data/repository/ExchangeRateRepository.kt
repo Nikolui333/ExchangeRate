@@ -26,4 +26,7 @@ class ExchangeRateRepository(private val exchangeRateApiDataSource: ApiDataSourc
         return exchangeRateDataSource.getSortCurrencyAlphabetAscending()
     }
 
+/*    override suspend fun clear() {
+        dao.clear()    }*/
+
 }

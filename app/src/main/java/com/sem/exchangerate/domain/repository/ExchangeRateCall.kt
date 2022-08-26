@@ -11,4 +11,5 @@ interface ExchangeRateCall {
 
     fun getSortCurrencyAlphabetAscending() : LiveData<List<ExchangeRateModel>>
 
+/*    suspend fun clear()*/
 }

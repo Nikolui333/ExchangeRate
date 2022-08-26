@@ -25,4 +25,7 @@ class ExchangeRateUseCase(private val exchangeRateCall : ExchangeRateCall) {
 
     }
 
+/*    suspend fun clear() {
+        exchangeRateCall.clear()    }*/
+
 }

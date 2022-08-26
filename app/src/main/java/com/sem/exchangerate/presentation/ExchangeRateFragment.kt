@@ -18,7 +18,7 @@ import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.data.models.FavouriteModel
 import com.sem.exchangerate.presentation.viewModel.FavouriteViewModel
 
-class ExchangeRateFragment : Fragment()/*, View.OnClickListener*/ {
+class ExchangeRateFragment : Fragment() {
 
     private var binding: FragmentExchangeRateBinding? = null
     private var exchangeRateAdapter : ExchangeRateAdapter? = null
@@ -34,9 +34,13 @@ class ExchangeRateFragment : Fragment()/*, View.OnClickListener*/ {
         loadExchangeRate()
 
         binding?.sort?.setOnClickListener {
-            exchangeRateViewModel?.getSortCurrencyAlphabetAscending()
-            initRecyclerExchangeRate()
-            loadExchangeRate()
+
+            exchangeRateViewModel?.getSortCurrencyAlphabetAscending?.observe(
+                viewLifecycleOwner, Observer {
+                    exchangeRateAdapter?.setList(it)
+                    exchangeRateAdapter?.notifyDataSetChanged()
+                }
+            )
         }
 
         return binding?.root
@@ -74,20 +78,6 @@ class ExchangeRateFragment : Fragment()/*, View.OnClickListener*/ {
         })
 
     }
-
-/*    override fun onClick(view: View) {
-        when(view.id) {
-
-            R.id.sort -> {
-                exchangeRateViewModel?.getSortCurrencyAlphabetAscending()
-                loadExchangeRate()
-            }
-        }
-    }*/
-
-/*    private fun sort(exchangeRateModel: ExchangeRateModel) {
-        exchangeRateViewModel?.getSortCurrencyAlphabetAscending()
-    }*/
 
     // добавление в избранное
     private fun addToFavourite(exchangeRateModel: ExchangeRateModel) {

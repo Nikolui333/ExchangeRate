@@ -14,8 +14,7 @@ class ExchangeRateViewModel(private val exchangeRateUseCase: ExchangeRateUseCase
         exchangeRateUseCase.startMigration(context)
     }
 
-    fun getSortCurrencyAlphabetAscending() = viewModelScope.launch {
-        exchangeRateUseCase.getSortCurrencyAlphabetAscending()
-    }
+    val getSortCurrencyAlphabetAscending = exchangeRateUseCase.getSortCurrencyAlphabetAscending()
+
 
 }
