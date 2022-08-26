@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sem.exchangerate.R
 import com.sem.exchangerate.databinding.FragmentExchangeRateBinding
@@ -17,7 +18,7 @@ import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.data.models.FavouriteModel
 import com.sem.exchangerate.presentation.viewModel.FavouriteViewModel
 
-class ExchangeRateFragment : Fragment() {
+class ExchangeRateFragment : Fragment()/*, View.OnClickListener*/ {
 
     private var binding: FragmentExchangeRateBinding? = null
     private var exchangeRateAdapter : ExchangeRateAdapter? = null
@@ -31,6 +32,12 @@ class ExchangeRateFragment : Fragment() {
 
         initRecyclerExchangeRate()
         loadExchangeRate()
+
+        binding?.sort?.setOnClickListener {
+            exchangeRateViewModel?.getSortCurrencyAlphabetAscending()
+            initRecyclerExchangeRate()
+            loadExchangeRate()
+        }
 
         return binding?.root
     }
@@ -67,6 +74,20 @@ class ExchangeRateFragment : Fragment() {
         })
 
     }
+
+/*    override fun onClick(view: View) {
+        when(view.id) {
+
+            R.id.sort -> {
+                exchangeRateViewModel?.getSortCurrencyAlphabetAscending()
+                loadExchangeRate()
+            }
+        }
+    }*/
+
+/*    private fun sort(exchangeRateModel: ExchangeRateModel) {
+        exchangeRateViewModel?.getSortCurrencyAlphabetAscending()
+    }*/
 
     // добавление в избранное
     private fun addToFavourite(exchangeRateModel: ExchangeRateModel) {

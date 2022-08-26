@@ -42,7 +42,7 @@ val exchangeRate = module {
     }
 
 
-    single<ExchangeRateCall> { ExchangeRateRepository(get(),get()) }
+    single<ExchangeRateCall> { ExchangeRateRepository(get(),get(), get()) }
 
 
     single { ExchangeRateUseCase(get()) }

@@ -9,4 +9,6 @@ interface ExchangeRateCall {
     fun loadCurrency(): LiveData<List<ExchangeRateModel>>
     suspend fun startMigration(context: Context)
 
+    fun getSortCurrencyAlphabetAscending() : LiveData<List<ExchangeRateModel>>
+
 }

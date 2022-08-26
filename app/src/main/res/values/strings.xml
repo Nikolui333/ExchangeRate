@@ -9,5 +9,6 @@
     <string name="rateName">currency name</string>
 
     <string name="base">Base currency: USD</string>
+    <string name="sort">sort</string>
 
 </resources>
