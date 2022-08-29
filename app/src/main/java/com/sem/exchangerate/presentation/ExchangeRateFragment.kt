@@ -33,7 +33,7 @@ class ExchangeRateFragment : Fragment() {
         initRecyclerExchangeRate()
         loadExchangeRate()
 
-        binding?.sort?.setOnClickListener {
+        binding?.sortAlphabetAscending?.setOnClickListener {
 
             exchangeRateViewModel?.getSortCurrencyAlphabetAscending?.observe(
                 viewLifecycleOwner, Observer {
@@ -41,6 +41,17 @@ class ExchangeRateFragment : Fragment() {
                     exchangeRateAdapter?.notifyDataSetChanged()
                 }
             )
+        }
+
+        binding?.sortAlphabetDescending?.setOnClickListener {
+
+            exchangeRateViewModel?.getSortCurrencyAlphabetDescending?.observe(
+                viewLifecycleOwner, Observer {
+                    exchangeRateAdapter?.setList(it)
+                    exchangeRateAdapter?.notifyDataSetChanged()
+                }
+            )
+
         }
 
         return binding?.root

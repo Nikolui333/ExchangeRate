@@ -17,4 +17,5 @@ interface FavouriteCall {
     //  отмена обозначения валюты как добавленной в избранное
     suspend fun deleteCurrencyToCardFromFavourite(idProduct:String)
 
+
 }

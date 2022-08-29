@@ -23,16 +23,39 @@
                 android:textColor="@color/black"
                 tools:ignore="MissingConstraints,RtlHardcoded,RtlSymmetry,SpUsage" />
 
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="MissingConstraints,RedundantNamespace">
+
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/sort"
+                android:id="@+id/sortAlphabetAscending"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
+                android:layout_weight="1"
                 android:layout_marginTop = "30dp"
                 android:padding="20dp"
                 android:background="@color/black"
                 android:textColor="@color/white"
-                android:text="@string/sort" />
+                android:text="@string/sortASC" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sortAlphabetDescending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_weight="1"
+                android:layout_marginTop = "30dp"
+                android:padding="20dp"
+                android:background="@color/black"
+                android:textColor="@color/white"
+                android:text="@string/sortDESC" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/exchangeRateRV"

@@ -10,7 +10,6 @@ import com.sem.exchangerate.domain.repository.ExchangeRateCall
 
 class ExchangeRateRepository(private val exchangeRateApiDataSource: ApiDataSource,
                              private val exchangeRateDataSource: ExchangeRateDataSource,
-                             private val dao: ExchangeRateDao
                              ) : ExchangeRateCall {
 
     override fun loadCurrency(): LiveData<List<ExchangeRateModel>> {
@@ -26,7 +25,8 @@ class ExchangeRateRepository(private val exchangeRateApiDataSource: ApiDataSourc
         return exchangeRateDataSource.getSortCurrencyAlphabetAscending()
     }
 
-/*    override suspend fun clear() {
-        dao.clear()    }*/
+    override fun getSortCurrencyAlphabetDescending(): LiveData<List<ExchangeRateModel>> {
+        return exchangeRateDataSource.getSortCurrencyAlphabetDescending()
+    }
 
 }

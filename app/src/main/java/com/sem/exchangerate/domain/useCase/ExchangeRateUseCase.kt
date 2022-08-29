@@ -25,7 +25,10 @@ class ExchangeRateUseCase(private val exchangeRateCall : ExchangeRateCall) {
 
     }
 
-/*    suspend fun clear() {
-        exchangeRateCall.clear()    }*/
+    fun getSortCurrencyAlphabetDescending() : LiveData<List<ExchangeRateModel>> {
+
+        return exchangeRateCall.getSortCurrencyAlphabetDescending()
+
+    }
 
 }
