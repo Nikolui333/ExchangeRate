@@ -17,4 +17,6 @@ class ExchangeRateViewModel(private val exchangeRateUseCase: ExchangeRateUseCase
     val getSortCurrencyAlphabetAscending = exchangeRateUseCase.getSortCurrencyAlphabetAscending()
 
     val getSortCurrencyAlphabetDescending = exchangeRateUseCase.getSortCurrencyAlphabetDescending()
+
+    val getSortCurrencyNumberAscending = exchangeRateUseCase.getSortCurrencyNumberAscending()
 }

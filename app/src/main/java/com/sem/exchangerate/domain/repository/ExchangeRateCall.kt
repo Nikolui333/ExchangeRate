@@ -13,4 +13,5 @@ interface ExchangeRateCall {
 
     fun getSortCurrencyAlphabetDescending() : LiveData<List<ExchangeRateModel>>
 
+    fun getSortCurrencyNumberAscending() : LiveData<List<ExchangeRateModel>>
 }

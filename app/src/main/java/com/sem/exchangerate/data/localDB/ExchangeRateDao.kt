@@ -22,6 +22,9 @@ interface ExchangeRateDao {
     @Query("SELECT * FROM exchange_rate_table ORDER BY name DESC")
     fun getSortCurrencyAlphabetDescending() : LiveData<List<ExchangeRateModel>>
 
+    @Query("SELECT * FROM exchange_rate_table ORDER BY exchange ASC")
+    fun getSortCurrencyNumberAscending() : LiveData<List<ExchangeRateModel>>
+
     @Query("DELETE FROM exchange_rate_table")
     suspend fun clear()
 }

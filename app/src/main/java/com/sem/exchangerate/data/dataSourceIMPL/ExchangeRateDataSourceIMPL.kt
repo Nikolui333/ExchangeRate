@@ -32,5 +32,9 @@ class ExchangeRateDataSourceIMPL(private val dao: ExchangeRateDao) : ExchangeRat
         return dao.getSortCurrencyAlphabetDescending()
     }
 
+    override fun getSortCurrencyNumberAscending(): LiveData<List<ExchangeRateModel>> {
+        return dao.getSortCurrencyNumberAscending()
+    }
+
 
 }

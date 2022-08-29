@@ -54,6 +54,17 @@ class ExchangeRateFragment : Fragment() {
 
         }
 
+        binding?.sortNumberAscending?.setOnClickListener {
+
+            exchangeRateViewModel?.getSortCurrencyNumberAscending?.observe(
+                viewLifecycleOwner, Observer {
+                    exchangeRateAdapter?.setList(it)
+                    exchangeRateAdapter?.notifyDataSetChanged()
+                }
+            )
+
+        }
+
         return binding?.root
     }
 
@@ -93,7 +104,7 @@ class ExchangeRateFragment : Fragment() {
     // добавление в избранное
     private fun addToFavourite(exchangeRateModel: ExchangeRateModel) {
         favouriteViewModel.startInsert(exchangeRateModel.name,
-            exchangeRateModel.exchange,
+            exchangeRateModel.exchange.toString(),
             exchangeRateModel.id.toString())
     }
 

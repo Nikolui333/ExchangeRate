@@ -15,5 +15,5 @@ class ExchangeRateModel(
     val name: String,
 
     @ColumnInfo(name = "exchange")
-    val exchange:String
+    val exchange: Double?
 )

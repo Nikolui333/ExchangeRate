@@ -43,7 +43,7 @@ class ExchangeRateAdapter(private val addToFavourite:(ExchangeRateModel)->Unit, 
                  removeFromFavourite: (ExchangeRateModel) -> Unit,
                  loadCurrencyToCardFromFavourite: (Int, AppCompatImageButton, AppCompatImageButton) -> Unit){
             binding.name.text = exchangeRateModel.name
-            binding.num.text = exchangeRateModel.exchange
+            binding.num.text = exchangeRateModel.exchange.toString()
 
 
         binding.addToFavourite.setOnClickListener(View.OnClickListener {

@@ -29,4 +29,9 @@ class ExchangeRateRepository(private val exchangeRateApiDataSource: ApiDataSourc
         return exchangeRateDataSource.getSortCurrencyAlphabetDescending()
     }
 
+    override fun getSortCurrencyNumberAscending(): LiveData<List<ExchangeRateModel>> {
+        return exchangeRateDataSource.getSortCurrencyNumberAscending()
+    }
+
+
 }
