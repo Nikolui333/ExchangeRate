@@ -16,4 +16,6 @@ interface ExchangeRateDataSource {
     fun getSortCurrencyAlphabetDescending(): LiveData<List<ExchangeRateModel>>
 
     fun getSortCurrencyNumberAscending(): LiveData<List<ExchangeRateModel>>
+
+    fun getSortCurrencyNumberDescending(): LiveData<List<ExchangeRateModel>>
 }

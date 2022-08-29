@@ -12,5 +12,6 @@
     <string name="sortASC">A → Z</string>
     <string name="sortDESC">Z → A</string>
     <string name="sortNumberASC">1 → 10</string>
+    <string name="sortNumberDESC">10 → 1</string>
 
 </resources>

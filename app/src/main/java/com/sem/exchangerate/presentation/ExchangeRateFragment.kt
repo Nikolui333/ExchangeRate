@@ -65,6 +65,17 @@ class ExchangeRateFragment : Fragment() {
 
         }
 
+        binding?.sortNumberDescending?.setOnClickListener {
+
+            exchangeRateViewModel?.getSortCurrencyNumberDescending?.observe(
+                viewLifecycleOwner, Observer {
+                    exchangeRateAdapter?.setList(it)
+                    exchangeRateAdapter?.notifyDataSetChanged()
+                }
+            )
+
+        }
+
         return binding?.root
     }
 
