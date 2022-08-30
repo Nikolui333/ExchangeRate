@@ -14,4 +14,11 @@
     <string name="sortNumberASC">1 → 10</string>
     <string name="sortNumberDESC">10 → 1</string>
 
+    <string-array name="currency_array">
+        <item>USD</item>
+        <item>RON</item>
+        <item>GBP</item>
+        <item>KZT</item>
+    </string-array>
+
 </resources>

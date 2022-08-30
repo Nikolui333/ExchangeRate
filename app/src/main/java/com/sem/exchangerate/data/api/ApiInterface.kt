@@ -8,7 +8,7 @@ import retrofit2.http.Headers
 
 interface ApiInterface {
 
-    @Headers("apikey: 1bq03rri5hOHThEdWF4E1VT6gi0d4j3F") // вставь сюда ключ с этого сайта https://apilayer.com/marketplace/exchangerates_data-api#documentation-tab
+    @Headers("apikey: ") // вставь сюда ключ с этого сайта https://apilayer.com/marketplace/exchangerates_data-api#documentation-tab
     @GET("exchangerates_data/latest?symbols=AUD%2CEUR%2CJPY%2CMDL%2CRUB&base=USD")
     fun loadExchangeRateApi(): Call<ExchangeRateResponseModel/*ArrayList<ExchangeRateApiModel>*/>
 

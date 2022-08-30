@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
@@ -24,6 +25,9 @@ class ExchangeRateFragment : Fragment() {
     private var exchangeRateAdapter : ExchangeRateAdapter? = null
     private val exchangeRateViewModel : ExchangeRateViewModel? by viewModel()
     private val favouriteViewModel: FavouriteViewModel by viewModel()
+    private var spinner : Spinner? = null
+
+    private var adapter: ArrayAdapter<String>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -73,6 +77,50 @@ class ExchangeRateFragment : Fragment() {
                     exchangeRateAdapter?.notifyDataSetChanged()
                 }
             )
+
+        }
+
+        val array = arrayOf("USD", "RON", "GBP")
+
+        val rootView = inflater.inflate(R.layout.fragment_exchange_rate, container, false)
+
+        val adapter =  ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, array)
+      //  spinner = rootView.findViewById<Spinner>(R.id.spinner)
+
+        binding?.spinner?.adapter = adapter
+
+      //  spinner = view?.findViewById<Spinner>(R.id.spinner)
+
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner?.adapter = adapter
+
+/*        ArrayAdapter.createFromResource(
+            activity?.applicationContext!!,
+            R.array.currency_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner?.adapter = adapter
+        }*/
+
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                //  result?.text = array.get(p2)
+
+                when(p2) {
+                   // 0 -> result?.text = array.get(0)
+                  //  1 -> result?.text = array.get(1)
+                  //  2 -> result?.text = array.get(2)
+                }
+            }
+
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                // result?.text = array.get(0)
+            }
 
         }
 
