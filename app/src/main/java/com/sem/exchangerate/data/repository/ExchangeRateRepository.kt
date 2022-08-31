@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import com.sem.exchangerate.data.dataSource.ApiDataSource
 import com.sem.exchangerate.data.dataSource.ExchangeRateDataSource
-import com.sem.exchangerate.data.localDB.ExchangeRateDao
 import com.sem.exchangerate.data.models.ExchangeRateModel
+import com.sem.exchangerate.data.models.ExchangeRateResponseModel
 import com.sem.exchangerate.domain.repository.ExchangeRateCall
+import retrofit2.Call
 
 class ExchangeRateRepository(private val exchangeRateApiDataSource: ApiDataSource,
                              private val exchangeRateDataSource: ExchangeRateDataSource,
@@ -16,9 +17,9 @@ class ExchangeRateRepository(private val exchangeRateApiDataSource: ApiDataSourc
         return exchangeRateDataSource.loadExchangeRate()
     }
 
-    override suspend fun startMigration(context: Context) {
+    override suspend fun startMigration(context: Context, dataApi: Call<ExchangeRateResponseModel>?) {
         exchangeRateDataSource.clear()
-        exchangeRateApiDataSource.startMigration(context)
+        exchangeRateApiDataSource.startMigration(context, dataApi)
     }
 
     override fun getSortCurrencyAlphabetAscending(): LiveData<List<ExchangeRateModel>> {

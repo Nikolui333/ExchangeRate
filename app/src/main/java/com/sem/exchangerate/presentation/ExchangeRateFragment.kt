@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sem.exchangerate.R
 import com.sem.exchangerate.databinding.FragmentExchangeRateBinding
 import com.sem.exchangerate.presentation.viewModel.ExchangeRateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
+import com.sem.exchangerate.data.api.ApiClient
+import com.sem.exchangerate.data.dataSourceIMPL.ApiDataSourceIMPL
 import com.sem.exchangerate.data.models.ExchangeRateModel
-import com.sem.exchangerate.data.models.FavouriteModel
 import com.sem.exchangerate.presentation.viewModel.FavouriteViewModel
 
 class ExchangeRateFragment : Fragment() {
@@ -111,9 +111,9 @@ class ExchangeRateFragment : Fragment() {
                 //  result?.text = array.get(p2)
 
                 when(p2) {
-                   // 0 -> result?.text = array.get(0)
-                  //  1 -> result?.text = array.get(1)
-                  //  2 -> result?.text = array.get(2)
+                    0 -> ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiUSD()
+                    1 -> ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiUSD()
+                    2 -> ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiUSD()
                 }
             }
 

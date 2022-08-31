@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.sem.exchangerate.R
+import com.sem.exchangerate.data.DataApi
+import com.sem.exchangerate.data.api.ApiClient
 import com.sem.exchangerate.databinding.ActivityMainBinding
 import com.sem.exchangerate.presentation.viewModel.ExchangeRateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -14,12 +16,14 @@ class MainActivity : AppCompatActivity() {
 
     private val exchangeRateViewModel : ExchangeRateViewModel by viewModel()
 
+    private val dataApi: DataApi? = DataApi()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        exchangeRateViewModel.migration(this)
+        exchangeRateViewModel.migration(this, dataApi?.apiUSD)
 
         setSupportActionBar(binding?.topMainMenu)
 
