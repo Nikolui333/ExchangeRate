@@ -14,6 +14,7 @@ import com.sem.exchangerate.databinding.FragmentExchangeRateBinding
 import com.sem.exchangerate.presentation.viewModel.ExchangeRateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
+import com.sem.exchangerate.data.DataApi
 import com.sem.exchangerate.data.api.ApiClient
 import com.sem.exchangerate.data.dataSourceIMPL.ApiDataSourceIMPL
 import com.sem.exchangerate.data.models.ExchangeRateModel
@@ -28,6 +29,8 @@ class ExchangeRateFragment : Fragment() {
     private var spinner : Spinner? = null
 
     private var adapter: ArrayAdapter<String>? = null
+
+    private val dataApi: DataApi? = DataApi()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -77,43 +80,38 @@ class ExchangeRateFragment : Fragment() {
                     exchangeRateAdapter?.notifyDataSetChanged()
                 }
             )
-
         }
 
-        val array = arrayOf("USD", "RON", "GBP")
-
-        val rootView = inflater.inflate(R.layout.fragment_exchange_rate, container, false)
-
-        val adapter =  ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, array)
-      //  spinner = rootView.findViewById<Spinner>(R.id.spinner)
-
-        binding?.spinner?.adapter = adapter
-
-      //  spinner = view?.findViewById<Spinner>(R.id.spinner)
-
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner?.adapter = adapter
-
-/*        ArrayAdapter.createFromResource(
+        ArrayAdapter.createFromResource(
             activity?.applicationContext!!,
             R.array.currency_array,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            spinner?.adapter = adapter
-        }*/
 
-        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+            binding?.spinner?.adapter = adapter
+        }
+
+/*        adapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner?.adapter = adapter*/
+
+        binding?.spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 //  result?.text = array.get(p2)
 
                 when(p2) {
                     0 -> ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiUSD()
-                    1 -> ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiUSD()
-                    2 -> ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiUSD()
+                    1 -> {
+                        exchangeRateViewModel?.migration(requireContext(), dataApi?.apiRON)
+                        exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
+
+                            exchangeRateAdapter?.setList(it)
+                            exchangeRateAdapter?.notifyDataSetChanged()
+                        })
+                    }
+                        // ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiRON()
+                    2 -> ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiGBP()
                 }
             }
 
@@ -157,7 +155,6 @@ class ExchangeRateFragment : Fragment() {
             exchangeRateAdapter?.setList(it)
             exchangeRateAdapter?.notifyDataSetChanged()
         })
-
     }
 
     // добавление в избранное
