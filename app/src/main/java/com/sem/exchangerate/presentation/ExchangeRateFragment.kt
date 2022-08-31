@@ -96,42 +96,26 @@ class ExchangeRateFragment : Fragment() {
                 when(position) {
                     0 -> {
                         exchangeRateViewModel?.migration(requireContext(), dataApi?.apiUSD)
-                        exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
-
-                            exchangeRateAdapter?.setList(it)
-                            exchangeRateAdapter?.notifyDataSetChanged()
-                        })
+                        loadExchangeRate()
                     }
                     1 -> {
                         exchangeRateViewModel?.migration(requireContext(), dataApi?.apiRON)
-                        exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
-
-                            exchangeRateAdapter?.setList(it)
-                            exchangeRateAdapter?.notifyDataSetChanged()
-                        })
+                        loadExchangeRate()
                     }
                     2 -> {
                         exchangeRateViewModel?.migration(requireContext(), dataApi?.apiGBP)
-                        exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
-
-                            exchangeRateAdapter?.setList(it)
-                            exchangeRateAdapter?.notifyDataSetChanged()
-                        })
+                        loadExchangeRate()
                     }
                     3 -> {
                         exchangeRateViewModel?.migration(requireContext(), dataApi?.apiKZT)
-                        exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
-
-                            exchangeRateAdapter?.setList(it)
-                            exchangeRateAdapter?.notifyDataSetChanged()
-                        })
+                        loadExchangeRate()
                     }
                 }
             }
 
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                // result?.text = array.get(0)
+
             }
 
         }
