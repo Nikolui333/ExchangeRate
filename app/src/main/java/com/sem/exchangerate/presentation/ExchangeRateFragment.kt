@@ -26,9 +26,6 @@ class ExchangeRateFragment : Fragment() {
     private var exchangeRateAdapter : ExchangeRateAdapter? = null
     private val exchangeRateViewModel : ExchangeRateViewModel? by viewModel()
     private val favouriteViewModel: FavouriteViewModel by viewModel()
-    private var spinner : Spinner? = null
-
-    private var adapter: ArrayAdapter<String>? = null
 
     private val dataApi: DataApi? = DataApi()
 
@@ -93,15 +90,18 @@ class ExchangeRateFragment : Fragment() {
             binding?.spinner?.adapter = adapter
         }
 
-/*        adapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner?.adapter = adapter*/
-
         binding?.spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                //  result?.text = array.get(p2)
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
 
-                when(p2) {
-                    0 -> ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiUSD()
+                when(position) {
+                    0 -> {
+                        exchangeRateViewModel?.migration(requireContext(), dataApi?.apiUSD)
+                        exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
+
+                            exchangeRateAdapter?.setList(it)
+                            exchangeRateAdapter?.notifyDataSetChanged()
+                        })
+                    }
                     1 -> {
                         exchangeRateViewModel?.migration(requireContext(), dataApi?.apiRON)
                         exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
@@ -110,8 +110,22 @@ class ExchangeRateFragment : Fragment() {
                             exchangeRateAdapter?.notifyDataSetChanged()
                         })
                     }
-                        // ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiRON()
-                    2 -> ApiDataSourceIMPL.call = ApiClient.instance?.api?.loadExchangeRateApiGBP()
+                    2 -> {
+                        exchangeRateViewModel?.migration(requireContext(), dataApi?.apiGBP)
+                        exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
+
+                            exchangeRateAdapter?.setList(it)
+                            exchangeRateAdapter?.notifyDataSetChanged()
+                        })
+                    }
+                    3 -> {
+                        exchangeRateViewModel?.migration(requireContext(), dataApi?.apiKZT)
+                        exchangeRateViewModel?.loadExchange?.observe(viewLifecycleOwner, Observer {
+
+                            exchangeRateAdapter?.setList(it)
+                            exchangeRateAdapter?.notifyDataSetChanged()
+                        })
+                    }
                 }
             }
 

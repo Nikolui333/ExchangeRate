@@ -12,6 +12,6 @@ data class DataApi (
 
     val apiGBP: Call<ExchangeRateResponseModel>? = ApiClient.instance?.api?.loadExchangeRateApiGBP(),
 
-    val apiKZT: Call<ExchangeRateResponseModel>? = ApiClient.instance?.api?.loadExchangeRateApiGBP()
+    val apiKZT: Call<ExchangeRateResponseModel>? = ApiClient.instance?.api?.loadExchangeRateApiKZT()
 
 )
