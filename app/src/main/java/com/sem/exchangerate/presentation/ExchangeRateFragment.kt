@@ -14,9 +14,6 @@ import com.sem.exchangerate.databinding.FragmentExchangeRateBinding
 import com.sem.exchangerate.presentation.viewModel.ExchangeRateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
-import com.sem.exchangerate.data.DataApi
-import com.sem.exchangerate.data.api.ApiClient
-import com.sem.exchangerate.data.dataSourceIMPL.ApiDataSourceIMPL
 import com.sem.exchangerate.data.models.ExchangeRateModel
 import com.sem.exchangerate.presentation.viewModel.FavouriteViewModel
 
@@ -26,8 +23,6 @@ class ExchangeRateFragment : Fragment() {
     private var exchangeRateAdapter : ExchangeRateAdapter? = null
     private val exchangeRateViewModel : ExchangeRateViewModel? by viewModel()
     private val favouriteViewModel: FavouriteViewModel by viewModel()
-
-    private val dataApi: DataApi? = DataApi()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -93,24 +88,17 @@ class ExchangeRateFragment : Fragment() {
         binding?.spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
 
-                when(position) {
-                    0 -> {
-                        exchangeRateViewModel?.migration(requireContext(), dataApi?.apiUSD)
-                        loadExchangeRate()
-                    }
-                    1 -> {
-                        exchangeRateViewModel?.migration(requireContext(), dataApi?.apiRON)
-                        loadExchangeRate()
-                    }
-                    2 -> {
-                        exchangeRateViewModel?.migration(requireContext(), dataApi?.apiGBP)
-                        loadExchangeRate()
-                    }
-                    3 -> {
-                        exchangeRateViewModel?.migration(requireContext(), dataApi?.apiKZT)
-                        loadExchangeRate()
+                val currency = when(position) {
+                    0 -> "USD"
+                    1 -> "RON"
+                    2 -> "GBP"
+                    3 -> "KZT"
+                    else -> {
+
                     }
                 }
+                exchangeRateViewModel?.migration(requireContext(), currency as String)
+                loadExchangeRate()
             }
 
 

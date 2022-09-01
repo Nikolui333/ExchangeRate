@@ -2,11 +2,8 @@ package com.sem.exchangerate.domain.useCase
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.sem.exchangerate.data.DataApi
 import com.sem.exchangerate.data.models.ExchangeRateModel
-import com.sem.exchangerate.data.models.ExchangeRateResponseModel
 import com.sem.exchangerate.domain.repository.ExchangeRateCall
-import retrofit2.Call
 
 class ExchangeRateUseCase(private val exchangeRateCall : ExchangeRateCall) {
 
@@ -16,9 +13,9 @@ class ExchangeRateUseCase(private val exchangeRateCall : ExchangeRateCall) {
 
     }
 
-    suspend fun startMigration (context: Context, dataApi: Call<ExchangeRateResponseModel>?) {
+    suspend fun startMigration (context: Context, currency: String) {
 
-        exchangeRateCall.startMigration(context, dataApi)
+        exchangeRateCall.startMigration(context, currency)
 
     }
 

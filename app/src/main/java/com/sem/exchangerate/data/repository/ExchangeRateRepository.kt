@@ -17,9 +17,9 @@ class ExchangeRateRepository(private val exchangeRateApiDataSource: ApiDataSourc
         return exchangeRateDataSource.loadExchangeRate()
     }
 
-    override suspend fun startMigration(context: Context, dataApi: Call<ExchangeRateResponseModel>?) {
+    override suspend fun startMigration(context: Context, currency: String) {
         exchangeRateDataSource.clear()
-        exchangeRateApiDataSource.startMigration(context, dataApi)
+        exchangeRateApiDataSource.startMigration(context, currency)
     }
 
     override fun getSortCurrencyAlphabetAscending(): LiveData<List<ExchangeRateModel>> {

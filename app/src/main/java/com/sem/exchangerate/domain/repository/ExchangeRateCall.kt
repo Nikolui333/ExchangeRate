@@ -2,15 +2,12 @@ package com.sem.exchangerate.domain.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.sem.exchangerate.data.DataApi
 import com.sem.exchangerate.data.models.ExchangeRateModel
-import com.sem.exchangerate.data.models.ExchangeRateResponseModel
-import retrofit2.Call
 
 interface ExchangeRateCall {
 
     fun loadCurrency(): LiveData<List<ExchangeRateModel>>
-    suspend fun startMigration(context: Context, dataApi: Call<ExchangeRateResponseModel>?)
+    suspend fun startMigration(context: Context, currency: String)
 
     fun getSortCurrencyAlphabetAscending() : LiveData<List<ExchangeRateModel>>
 

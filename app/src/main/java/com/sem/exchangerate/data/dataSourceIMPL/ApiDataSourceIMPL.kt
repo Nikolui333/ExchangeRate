@@ -3,6 +3,7 @@ package com.sem.exchangerate.data.dataSourceIMPL
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.sem.exchangerate.data.api.ApiClient
 import com.sem.exchangerate.data.dataSource.ApiDataSource
 import com.sem.exchangerate.data.dataSource.ExchangeRateDataSource
 import com.sem.exchangerate.data.models.ExchangeRateModel
@@ -14,14 +15,9 @@ import retrofit2.Response
 class ApiDataSourceIMPL(private val exchangeRateDataSource: ExchangeRateDataSource):
     ApiDataSource {
 
-    companion object {
-        var call: Call<ExchangeRateResponseModel>? = null
-    }
+    override fun startMigration (context: Context, currency: String?) {
 
-    override fun startMigration (context: Context, dataApi: Call<ExchangeRateResponseModel>?) {
-
-        call = dataApi
-            // ApiClient.instance?.api?.loadExchangeRateApiUSD()
+        val call = currency?.let { ApiClient.instance?.api?.loadExchangeRateApi(it) }
         call?.enqueue(object: Callback<ExchangeRateResponseModel> {
             override fun onResponse(
                 call: Call<ExchangeRateResponseModel>,
