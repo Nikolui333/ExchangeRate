@@ -50,31 +50,10 @@ android {
 
     testOptions {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        unitTests.returnDefaultValues = true
     }
 
 }
-
-/*java {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-}
-
-tasks.withType(Test) {
-    useJUnitPlatform()
-    testLogging {
-        exceptionFormat "full"
-        events "started", "skipped", "passed", "failed"
-        showStandardStreams true
-    }*/
-
-/*    testOptions {
-        execution 'ANDROIDX_TEST_ORCHESTRATOR'
-
-        unitTests.all {
-            useJUnitPlatform() // <--- this is the important part
-        }
-    }*/
-//}
 
 dependencies {
 
